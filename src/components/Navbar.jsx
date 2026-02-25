@@ -94,7 +94,7 @@ export default function Navbar() {
         </div>
         <div className={styles.logoText}>
           <span className={styles.logoName}>
-            Magnus
+            Parth
             <span className={styles.logoNameGlow}>.</span>
           </span>
           <span className={styles.logoTag}>Master of Illusions</span>
