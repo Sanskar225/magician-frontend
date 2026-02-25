@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#c9a227"/>
+      <stop offset="100%" stop-color="#8b5e3c"/>
+    </radialGradient>
+  </defs>
+  <circle cx="50" cy="50" r="48" fill="#0a0a0f" stroke="url(#g)" stroke-width="2"/>
+  <text x="50" y="65" font-size="52" text-anchor="middle" fill="url(#g)" font-family="serif">✦</text>
+</svg>

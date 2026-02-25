@@ -1,0 +1,234 @@
+/* Services.module.css */
+.hero {
+      min-height: 100vh;
+
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 30%, rgba(139, 30, 42, 0.1) 0%, transparent 60%);
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 70%, rgba(201, 162, 39, 0.05) 0%, transparent 50%);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 4rem;
+}
+
+/* Service Cards */
+.serviceCard {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-decoration: none;
+  position: relative;
+}
+
+.popular {
+  border-color: rgba(201, 162, 39, 0.4);
+}
+
+.popularBadge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: linear-gradient(135deg, var(--color-gold-dark), var(--color-gold));
+  color: var(--color-void);
+  font-family: var(--font-heading);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+}
+
+.cardIcon {
+  font-size: 2.5rem;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(201, 162, 39, 0.08);
+  border: var(--border-gold);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-magic);
+}
+
+.serviceCard:hover .cardIcon {
+  background: rgba(201, 162, 39, 0.15);
+  box-shadow: var(--shadow-gold);
+  transform: scale(1.05);
+}
+
+.cardName {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  color: var(--color-white);
+  letter-spacing: 0.05em;
+}
+
+.cardDesc {
+  color: var(--color-white-dim);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  flex: 1;
+}
+
+.cardPrice {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  color: var(--color-gold);
+  letter-spacing: 0.1em;
+}
+
+.cardCta {
+  color: var(--color-gold);
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all var(--transition-magic);
+}
+
+.serviceCard:hover .cardCta {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Process */
+.process {
+  background: linear-gradient(135deg, var(--color-deep), var(--color-surface));
+  border-top: var(--border-gold);
+  border-bottom: var(--border-gold);
+}
+
+.processStep {
+  text-align: center;
+  padding: 2rem 1rem;
+  position: relative;
+}
+
+.stepNumber {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  color: rgba(201, 162, 39, 0.15);
+  line-height: 1;
+  margin-bottom: 1rem;
+  transition: color var(--transition-base);
+}
+
+.processStep:hover .stepNumber {
+  color: rgba(201, 162, 39, 0.4);
+}
+
+.stepTitle {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--color-white);
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.stepDesc {
+  color: var(--color-white-dim);
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+/* Detail view */
+.detail {
+  padding: 4rem 0 6rem;
+}
+
+.detailInner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.detailContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.detailIcon {
+  font-size: 3rem;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(201, 162, 39, 0.08);
+  border: var(--border-gold);
+  border-radius: var(--radius-md);
+}
+
+.detailDesc {
+  color: var(--color-white-dim);
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.detailPrice {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--color-gold);
+  letter-spacing: 0.1em;
+}
+
+.detailButtons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.detailFeatures {
+  background: linear-gradient(135deg, var(--color-surface), var(--color-mist));
+  border: var(--border-gold);
+  border-radius: var(--radius-md);
+  padding: 2.5rem;
+}
+
+.featuresTitle {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 1.5rem;
+}
+
+.featuresList { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--color-white-dim);
+  font-size: 0.95rem;
+}
+
+.featureCheck {
+  color: var(--color-gold);
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .detailInner { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+
+@media (max-width: 768px) {
+  .serviceCard { padding: 1.75rem; }
+}
