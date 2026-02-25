@@ -1,4 +1,4 @@
-# Magnus the Illusionist — Frontend
+# Parth the Illusionist — Frontend
 
 A production-ready React frontend for a professional magician website, featuring magical animations, scroll effects, and a dark luxury aesthetic.
 
@@ -53,7 +53,7 @@ src/
 │   └── useScrollReveal.js  # Scroll animation hooks
 ├── pages/
 │   ├── Home.jsx       # Landing page with all sections
-│   ├── About.jsx      # About Magnus + timeline
+│   ├── About.jsx      # About Parth + timeline
 │   ├── Services.jsx   # Service listing + detail view
 │   ├── Blog.jsx       # Blog listing + post reader
 │   ├── Contact.jsx    # Contact form + info
@@ -67,17 +67,17 @@ src/
 
 ## 🌐 Environment Variables
 
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `VITE_API_URL` | Backend API URL | `http://localhost:5000/api/v1` |
-| `VITE_API_BASE_URL` | Backend base URL | `http://localhost:5000` |
-| `VITE_SITE_NAME` | Site display name | `Magnus the Illusionist` |
-| `VITE_SITE_URL` | Production URL (for SEO) | `https://yourdomain.com` |
-| `VITE_CONTACT_EMAIL` | Contact email | `contact@yourdomain.com` |
-| `VITE_CONTACT_PHONE` | Contact phone | `+1 (555) 000-0000` |
-| `VITE_INSTAGRAM_URL` | Instagram profile URL | `https://instagram.com/...` |
-| `VITE_FACEBOOK_URL` | Facebook page URL | `https://facebook.com/...` |
-| `VITE_YOUTUBE_URL` | YouTube channel URL | `https://youtube.com/...` |
+| Variable             | Description              | Example                        |
+| -------------------- | ------------------------ | ------------------------------ |
+| `VITE_API_URL`       | Backend API URL          | `http://localhost:5000/api/v1` |
+| `VITE_API_BASE_URL`  | Backend base URL         | `http://localhost:5000`        |
+| `VITE_SITE_NAME`     | Site display name        | `Parth the Illusionist`        |
+| `VITE_SITE_URL`      | Production URL (for SEO) | `https://yourdomain.com`       |
+| `VITE_CONTACT_EMAIL` | Contact email            | `contact@yourdomain.com`       |
+| `VITE_CONTACT_PHONE` | Contact phone            | `+1 (555) 000-0000`            |
+| `VITE_INSTAGRAM_URL` | Instagram profile URL    | `https://instagram.com/...`    |
+| `VITE_FACEBOOK_URL`  | Facebook page URL        | `https://facebook.com/...`     |
+| `VITE_YOUTUBE_URL`   | YouTube channel URL      | `https://youtube.com/...`      |
 
 ## 🚢 Deployment
 
@@ -88,6 +88,7 @@ npm install -g vercel
 npm run build
 vercel --prod
 ```
+
 Set environment variables in the Vercel dashboard.
 
 ### Netlify
@@ -97,6 +98,7 @@ npm run build
 # Drag the dist/ folder into Netlify UI
 # Or: netlify deploy --prod --dir=dist
 ```
+
 The `netlify.toml` handles SPA routing and headers automatically.
 
 ### Self-hosted (nginx)
@@ -132,17 +134,20 @@ EXPOSE 80
 ## 🎨 Design System
 
 ### Colors
+
 - **Void** `#0a0a0f` — deepest background
 - **Gold** `#c9a227` — primary accent
 - **Silver** `#b8b8c8` — secondary text
 - **Crimson** `#8b1a2a` — highlights
 
 ### Fonts
+
 - **Display**: Cinzel Decorative — hero titles
 - **Heading**: Cinzel — section headers, nav
 - **Body**: Raleway — body text
 
 ### Key CSS Classes
+
 - `.reveal`, `.reveal-left`, `.reveal-right` — scroll animations
 - `.stagger` — staggered child animations
 - `.shimmer-text` — gold shimmer effect
@@ -155,23 +160,23 @@ EXPOSE 80
 The frontend connects to the backend via `src/utils/api.js`. Available API helpers:
 
 ```js
-import { blogAPI, serviceAPI, contactAPI, bannerAPI } from '@/utils/api'
+import { blogAPI, serviceAPI, contactAPI, bannerAPI } from "@/utils/api";
 
 // Blogs
-blogAPI.getAll('?page=1&limit=10')
-blogAPI.getOne('slug-or-id')
-blogAPI.getFeatured()
-blogAPI.getCategories()
+blogAPI.getAll("?page=1&limit=10");
+blogAPI.getOne("slug-or-id");
+blogAPI.getFeatured();
+blogAPI.getCategories();
 
 // Services
-serviceAPI.getAll('?limit=6')
-serviceAPI.getOne('slug-or-id')
+serviceAPI.getAll("?limit=6");
+serviceAPI.getOne("slug-or-id");
 
 // Contact (form submission)
-contactAPI.submit({ name, email, subject, message, phone, service })
+contactAPI.submit({ name, email, subject, message, phone, service });
 
 // Banners
-bannerAPI.getActive('home')
+bannerAPI.getActive("home");
 ```
 
 All API calls degrade gracefully — pages show hardcoded fallback data if the backend is unavailable.
@@ -179,6 +184,7 @@ All API calls degrade gracefully — pages show hardcoded fallback data if the b
 ## 🔍 SEO
 
 Each page uses `<SEOHead>` with:
+
 - Unique `<title>` and `<meta description>`
 - Open Graph tags
 - Twitter Card tags

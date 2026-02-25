@@ -1,19 +1,21 @@
 // src/components/SEOHead.jsx
-import { Helmet } from 'react-helmet-async'
+import { Helmet } from "react-helmet-async";
 
-const SITE_NAME = import.meta.env.VITE_SITE_NAME || 'Magnus the Illusionist'
-const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://yourdomain.com'
+const SITE_NAME = import.meta.env.VITE_SITE_NAME || "Parth the Illusionist";
+const SITE_URL = import.meta.env.VITE_SITE_URL || "https://yourdomain.com";
 
 export default function SEOHead({
   title,
   description,
   keywords,
-  canonicalPath = '',
+  canonicalPath = "",
   ogImage,
   noIndex = false,
 }) {
-  const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} | World-Class Magic & Illusions`
-  const canonical = `${SITE_URL}${canonicalPath}`
+  const fullTitle = title
+    ? `${title} | ${SITE_NAME}`
+    : `${SITE_NAME} | World-Class Magic & Illusions`;
+  const canonical = `${SITE_URL}${canonicalPath}`;
 
   return (
     <Helmet>
@@ -37,5 +39,5 @@ export default function SEOHead({
       {description && <meta name="twitter:description" content={description} />}
       {ogImage && <meta name="twitter:image" content={ogImage} />}
     </Helmet>
-  )
+  );
 }

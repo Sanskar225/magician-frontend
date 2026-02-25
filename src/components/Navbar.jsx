@@ -1,46 +1,56 @@
 // src/components/Navbar.jsx
-import { useState, useEffect, useCallback } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
-import styles from './Navbar.module.css'
+import { useState, useEffect, useCallback } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import styles from "./Navbar.module.css";
 
 const navLinks = [
-  { to: '/', label: 'Home' },
-  { to: '/about', label: 'About' },
-  { to: '/services', label: 'Services' },
-  { to: '/blog', label: 'Blog' },
-  { to: '/contact', label: 'Contact' },
-]
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About" },
+  { to: "/services", label: "Services" },
+  { to: "/blog", label: "Blog" },
+  { to: "/contact", label: "Contact" },
+];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
-  const location = useLocation()
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
 
   const handleScroll = useCallback(() => {
-    setScrolled(window.scrollY > 50)
-  }, [])
+    setScrolled(window.scrollY > 50);
+  }, []);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [handleScroll])
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
 
   useEffect(() => {
-    setMenuOpen(false)
-  }, [location])
+    setMenuOpen(false);
+  }, [location]);
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [menuOpen])
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   return (
-    <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`} role="navigation" aria-label="Main navigation">
+    <nav
+      className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`}
+      role="navigation"
+      aria-label="Main navigation"
+    >
       {/* Logo */}
-      <Link to="/" className={styles.logo} aria-label="Magnus the Illusionist - Home">
+      <Link
+        to="/"
+        className={styles.logo}
+        aria-label="Parth the Illusionist - Home"
+      >
         <span className={styles.logoSymbol}>✦</span>
         <div className={styles.logoText}>
-          <span className={styles.logoName}>Magnus</span>
+          <span className={styles.logoName}>Parth</span>
           <span className={styles.logoTag}>The Illusionist</span>
         </div>
       </Link>
@@ -52,9 +62,9 @@ export default function Navbar() {
             <NavLink
               to={to}
               className={({ isActive }) =>
-                `${styles.navLink} ${isActive ? styles.active : ''}`
+                `${styles.navLink} ${isActive ? styles.active : ""}`
               }
-              end={to === '/'}
+              end={to === "/"}
             >
               {label}
               <span className={styles.navUnderline} aria-hidden="true" />
@@ -70,17 +80,19 @@ export default function Navbar() {
 
       {/* Mobile hamburger */}
       <button
-        className={`${styles.hamburger} ${menuOpen ? styles.open : ''}`}
+        className={`${styles.hamburger} ${menuOpen ? styles.open : ""}`}
         onClick={() => setMenuOpen(!menuOpen)}
-        aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+        aria-label={menuOpen ? "Close menu" : "Open menu"}
         aria-expanded={menuOpen}
       >
-        <span /><span /><span />
+        <span />
+        <span />
+        <span />
       </button>
 
       {/* Mobile menu */}
       <div
-        className={`${styles.mobileMenu} ${menuOpen ? styles.mobileOpen : ''}`}
+        className={`${styles.mobileMenu} ${menuOpen ? styles.mobileOpen : ""}`}
         aria-hidden={!menuOpen}
       >
         <ul role="list">
@@ -89,16 +101,18 @@ export default function Navbar() {
               <NavLink
                 to={to}
                 className={({ isActive }) =>
-                  `${styles.mobileLink} ${isActive ? styles.active : ''}`
+                  `${styles.mobileLink} ${isActive ? styles.active : ""}`
                 }
-                end={to === '/'}
+                end={to === "/"}
               >
                 {label}
               </NavLink>
             </li>
           ))}
         </ul>
-        <Link to="/contact" className="btn btn-primary">Book a Show</Link>
+        <Link to="/contact" className="btn btn-primary">
+          Book a Show
+        </Link>
       </div>
 
       {/* Mobile overlay */}
@@ -110,5 +124,5 @@ export default function Navbar() {
         />
       )}
     </nav>
-  )
+  );
 }

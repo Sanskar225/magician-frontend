@@ -1,7 +1,7 @@
 // src/pages/NotFound.jsx
-import { Link } from 'react-router-dom'
-import SEOHead from '../components/SEOHead'
-import styles from './NotFound.module.css'
+import { Link } from "react-router-dom";
+import SEOHead from "../components/SEOHead";
+import styles from "./NotFound.module.css";
 
 export default function NotFound() {
   return (
@@ -13,15 +13,19 @@ export default function NotFound() {
           <h1 className={styles.code}>404</h1>
           <h2 className={styles.title}>The Magic Has Vanished</h2>
           <p className={styles.desc}>
-            This page has disappeared — much like a coin in Magnus's hands.
+            This page has disappeared — much like a coin in Parth's hands.
             Perhaps it was never here, or maybe it's simply hiding.
           </p>
           <div className={styles.buttons}>
-            <Link to="/" className="btn btn-primary">Return to the Show</Link>
-            <Link to="/contact" className="btn btn-ghost">Contact Magnus</Link>
+            <Link to="/" className="btn btn-primary">
+              Return to the Show
+            </Link>
+            <Link to="/contact" className="btn btn-ghost">
+              Contact Parth
+            </Link>
           </div>
         </div>
       </main>
     </>
-  )
+  );
 }
