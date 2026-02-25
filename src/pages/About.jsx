@@ -5,7 +5,7 @@ import SEOHead from "../components/SEOHead";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import styles from "./About.module.css";
-
+import stagePerformer from "../assets/stage-performer.png";
 const milestones = [
   {
     year: "2015",
@@ -200,15 +200,16 @@ export default function About() {
                 <div className={styles.imageWrapper}>
                   <div className={styles.imageOrb} />
                   <div className={styles.imageFrame}>
-                    <div className={styles.imageContent}>
-                      <div className={styles.imageSymbol}>✦</div>
-                      <div className={styles.imageName}>Parth</div>
-                      <div className={styles.imageTitle}>The Storyteller of Illusions</div>
-                      <div className={styles.imageDeco}>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                      </div>
+                    <div className={styles.imageContainer}>
+                      <img 
+                        src={stagePerformer} 
+                        alt="Magician Parth - Stage Performer specializing in Mentalism, Illusions, and Close-up Magic" 
+                        className={styles.stageImage}
+                        loading="lazy"
+                      />
+                      {/* Magical overlay effects */}
+                      <div className={styles.imageOverlay}></div>
+                      <div className={styles.imageGlow}></div>
                     </div>
                   </div>
                   
@@ -218,12 +219,33 @@ export default function About() {
                   <div className={styles.frameCorner3} />
                   <div className={styles.frameCorner4} />
                   
-                  {/* Floating badges */}
-                  <div className={styles.floatingBadge} style={{ top: '20%', right: '-20px' }}>
-                    <span>Storyteller</span>
+                  {/* Floating magical particles around the image */}
+                  <div className={styles.imageParticles}>
+                    {[...Array(8)].map((_, i) => (
+                      <div 
+                        key={i}
+                        className={styles.imageParticle}
+                        style={{
+                          top: `${Math.random() * 100}%`,
+                          left: `${Math.random() * 100}%`,
+                          animationDelay: `${Math.random() * 2}s`,
+                          animationDuration: `${3 + Math.random() * 4}s`
+                        }}
+                      >
+                        {['✦', '✧', '⚡', '✨'][Math.floor(Math.random() * 4)]}
+                      </div>
+                    ))}
                   </div>
-                  <div className={styles.floatingBadge} style={{ bottom: '20%', left: '-20px' }}>
-                    <span>Illusionist</span>
+                  
+                  {/* Floating badges with specialties from the image */}
+                  <div className={styles.floatingBadge} style={{ top: '15%', right: '-15px' }}>
+                    <span>Stage Performer</span>
+                  </div>
+                  <div className={styles.floatingBadge} style={{ bottom: '25%', left: '-15px' }}>
+                    <span>Mentalism</span>
+                  </div>
+                  <div className={styles.floatingBadge} style={{ top: '40%', left: '-20px' }}>
+                    <span>Illusions</span>
                   </div>
                 </div>
               </div>
