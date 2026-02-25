@@ -4,14 +4,16 @@ import SEOHead from "../components/SEOHead";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import { useVanta } from "../hooks/useVanta";
 import { contactAPI } from "../utils/api";
+import { Link } from "react-router-dom";
 import styles from "./Contact.module.css";
+import group5 from "../assets/Group-5.png";
 
 const EMAIL =
-  import.meta.env.VITE_CONTACT_EMAIL || "contact@Parththemagician.com";
-const PHONE = import.meta.env.VITE_CONTACT_PHONE || "+1 (555) 000-0000";
-const INSTAGRAM = import.meta.env.VITE_INSTAGRAM_URL;
-const FACEBOOK = import.meta.env.VITE_FACEBOOK_URL;
-const YOUTUBE = import.meta.env.VITE_YOUTUBE_URL;
+  import.meta.env.VITE_CONTACT_EMAIL || "contact@magicianparth.com";
+const PHONE = import.meta.env.VITE_CONTACT_PHONE || "+91 98765 43210";
+const INSTAGRAM = import.meta.env.VITE_INSTAGRAM_URL || "https://instagram.com/magicianparth";
+const FACEBOOK = import.meta.env.VITE_FACEBOOK_URL || "https://facebook.com/magicianparth";
+const X_TWITTER = import.meta.env.VITE_X_TWITTER_URL || "https://x.com/magicianparth";
 
 const eventTypes = [
   "Corporate Event",
@@ -21,6 +23,10 @@ const eventTypes = [
   "Festival / Conference",
   "Virtual Event",
   "Other",
+];
+
+const cities = [
+  "Lucknow", "Kanpur", "Agra", "Varanasi"
 ];
 
 export default function Contact() {
@@ -109,7 +115,7 @@ export default function Contact() {
     {
       icon: "⌖",
       label: "Location",
-      value: "Based in Las Vegas, NV\nAvailable worldwide",
+      value: "Based in Lucknow, UP\nAvailable worldwide",
       href: null,
     },
     {
@@ -123,38 +129,65 @@ export default function Contact() {
   return (
     <>
       <SEOHead
-        title="Contact & Bookings"
-        description="Book Parth the Illusionist for your event. Contact us to discuss your requirements and create a truly magical experience."
+        title="Contact & Bookings | Magician Parth - Best Magician In Lucknow, Kanpur, Agra & Varanasi"
+        description="Book Magician Parth for your event. Get in touch for corporate events, weddings, private parties, and virtual shows. Available in Lucknow, Kanpur, Agra, Varanasi and worldwide."
         canonicalPath="/contact"
+        keywords="book magician, contact magician, magician in lucknow, magician in kanpur, magician in agra, magician in varanasi, corporate magician, wedding magician"
       />
 
       <main className="page-transition">
-        {/* Hero */}
+        {/* Hero Section */}
         <section className={styles.hero} ref={vantaHeroRef}>
           <div className={styles.heroBg} aria-hidden="true" />
+          <div className={styles.heroOverlay} />
+          
+          <div className={styles.heroParticles}>
+            {[...Array(20)].map((_, i) => (
+              <div
+                key={i}
+                className={styles.heroParticle}
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 5}s`,
+                  animationDuration: `${10 + Math.random() * 10}s`
+                }}
+              >
+                {['✦', '✧', '⚡', '✨'][Math.floor(Math.random() * 4)]}
+              </div>
+            ))}
+          </div>
+
           <div className="container">
-            <div className="text-center reveal" ref={useScrollReveal()}>
+            <div className="text-center reveal">
               <div className="section-label">Get in Touch</div>
-              <h1 className="section-title">
-                Let&rsquo;s Create
+              <h1 className={styles.heroTitle}>
+                Let's Create
                 <br />
                 <span className="shimmer-text">Something Magical</span>
               </h1>
-              <p className="section-subtitle" style={{ margin: "0 auto" }}>
-                Ready to bring wonder to your event? Share the details and Parth
-                will craft a performance tailored just for you.
+              <p className={styles.heroSubtitle}>
+                Ready to bring wonder to your event? Share the details and I'll
+                craft a performance tailored just for you.
               </p>
             </div>
+          </div>
+
+          <div className={styles.scrollIndicator}>
+            <span className={styles.scrollText}>Reach Out</span>
+            <span className={styles.scrollArrow}>↓</span>
           </div>
         </section>
 
         {/* Contact Section */}
-        <section className="section">
+        <section className={`section ${styles.contactSection}`}>
           <div className="container">
             <div className={styles.contactGrid}>
               {/* Form */}
               <div className={`${styles.formSection} reveal`} ref={formRef}>
-                <h2 className={styles.formTitle}>Send an Enquiry</h2>
+                <div className={styles.formHeader}>
+                  <span className={styles.formIcon}>✦</span>
+                  <h2 className={styles.formTitle}>Send an Enquiry</h2>
+                </div>
 
                 {status === "success" ? (
                   <div className={styles.successMessage} role="alert">
@@ -166,8 +199,7 @@ export default function Contact() {
                       amazed.
                     </p>
                     <button
-                      className="btn btn-outline"
-                      style={{ marginTop: "1.5rem" }}
+                      className={styles.successButton}
                       onClick={() => setStatus("idle")}
                     >
                       Send Another Message
@@ -181,58 +213,53 @@ export default function Contact() {
                     aria-label="Contact form"
                   >
                     <div className={styles.formRow}>
-                      <div className="form-group">
-                        <label htmlFor="name" className="form-label">
-                          Full Name *
+                      <div className={styles.formGroup}>
+                        <label htmlFor="name" className={styles.formLabel}>
+                          Full Name <span className={styles.required}>*</span>
                         </label>
-                        <input
-                          id="name"
-                          type="text"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          className={`form-input ${errors.name ? styles.inputError : ""}`}
-                          placeholder="Your full name"
-                          autoComplete="name"
-                          aria-required="true"
-                          aria-describedby={
-                            errors.name ? "name-error" : undefined
-                          }
-                        />
+                        <div className={styles.inputWrapper}>
+                          <span className={styles.inputIcon}>👤</span>
+                          <input
+                            id="name"
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            className={`${styles.formInput} ${errors.name ? styles.inputError : ""}`}
+                            placeholder="Your full name"
+                            autoComplete="name"
+                            aria-required="true"
+                          />
+                          <span className={styles.inputGlow}></span>
+                        </div>
                         {errors.name && (
-                          <span
-                            id="name-error"
-                            className={styles.errorMsg}
-                            role="alert"
-                          >
+                          <span className={styles.errorMsg} role="alert">
                             {errors.name}
                           </span>
                         )}
                       </div>
-                      <div className="form-group">
-                        <label htmlFor="email" className="form-label">
-                          Email Address *
+
+                      <div className={styles.formGroup}>
+                        <label htmlFor="email" className={styles.formLabel}>
+                          Email Address <span className={styles.required}>*</span>
                         </label>
-                        <input
-                          id="email"
-                          type="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          className={`form-input ${errors.email ? styles.inputError : ""}`}
-                          placeholder="your@email.com"
-                          autoComplete="email"
-                          aria-required="true"
-                          aria-describedby={
-                            errors.email ? "email-error" : undefined
-                          }
-                        />
+                        <div className={styles.inputWrapper}>
+                          <span className={styles.inputIcon}>📧</span>
+                          <input
+                            id="email"
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            className={`${styles.formInput} ${errors.email ? styles.inputError : ""}`}
+                            placeholder="your@email.com"
+                            autoComplete="email"
+                            aria-required="true"
+                          />
+                          <span className={styles.inputGlow}></span>
+                        </div>
                         {errors.email && (
-                          <span
-                            id="email-error"
-                            className={styles.errorMsg}
-                            role="alert"
-                          >
+                          <span className={styles.errorMsg} role="alert">
                             {errors.email}
                           </span>
                         )}
@@ -240,93 +267,96 @@ export default function Contact() {
                     </div>
 
                     <div className={styles.formRow}>
-                      <div className="form-group">
-                        <label htmlFor="phone" className="form-label">
+                      <div className={styles.formGroup}>
+                        <label htmlFor="phone" className={styles.formLabel}>
                           Phone Number
                         </label>
-                        <input
-                          id="phone"
-                          type="tel"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          className="form-input"
-                          placeholder="+1 (555) 000-0000"
-                          autoComplete="tel"
-                        />
+                        <div className={styles.inputWrapper}>
+                          <span className={styles.inputIcon}>📞</span>
+                          <input
+                            id="phone"
+                            type="tel"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            className={styles.formInput}
+                            placeholder="+91 98765 43210"
+                            autoComplete="tel"
+                          />
+                          <span className={styles.inputGlow}></span>
+                        </div>
                       </div>
-                      <div className="form-group">
-                        <label htmlFor="service" className="form-label">
+
+                      <div className={styles.formGroup}>
+                        <label htmlFor="service" className={styles.formLabel}>
                           Event Type
                         </label>
-                        <select
-                          id="service"
-                          name="service"
-                          value={formData.service}
-                          onChange={handleChange}
-                          className="form-select"
-                        >
-                          <option value="">Select event type...</option>
-                          {eventTypes.map((type) => (
-                            <option key={type} value={type}>
-                              {type}
-                            </option>
-                          ))}
-                        </select>
+                        <div className={styles.inputWrapper}>
+                          <span className={styles.inputIcon}>🎪</span>
+                          <select
+                            id="service"
+                            name="service"
+                            value={formData.service}
+                            onChange={handleChange}
+                            className={styles.formSelect}
+                          >
+                            <option value="">Select event type...</option>
+                            {eventTypes.map((type) => (
+                              <option key={type} value={type}>
+                                {type}
+                              </option>
+                            ))}
+                          </select>
+                          <span className={styles.inputGlow}></span>
+                        </div>
                       </div>
                     </div>
 
-                    <div className="form-group">
-                      <label htmlFor="subject" className="form-label">
-                        Subject *
+                    <div className={styles.formGroup}>
+                      <label htmlFor="subject" className={styles.formLabel}>
+                        Subject <span className={styles.required}>*</span>
                       </label>
-                      <input
-                        id="subject"
-                        type="text"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleChange}
-                        className={`form-input ${errors.subject ? styles.inputError : ""}`}
-                        placeholder="e.g., Corporate Gala - January 2025"
-                        aria-required="true"
-                        aria-describedby={
-                          errors.subject ? "subject-error" : undefined
-                        }
-                      />
+                      <div className={styles.inputWrapper}>
+                        <span className={styles.inputIcon}>📝</span>
+                        <input
+                          id="subject"
+                          type="text"
+                          name="subject"
+                          value={formData.subject}
+                          onChange={handleChange}
+                          className={`${styles.formInput} ${errors.subject ? styles.inputError : ""}`}
+                          placeholder="e.g., Corporate Gala - January 2025"
+                          aria-required="true"
+                        />
+                        <span className={styles.inputGlow}></span>
+                      </div>
                       {errors.subject && (
-                        <span
-                          id="subject-error"
-                          className={styles.errorMsg}
-                          role="alert"
-                        >
+                        <span className={styles.errorMsg} role="alert">
                           {errors.subject}
                         </span>
                       )}
                     </div>
 
-                    <div className="form-group">
-                      <label htmlFor="message" className="form-label">
-                        Message *
+                    <div className={styles.formGroup}>
+                      <label htmlFor="message" className={styles.formLabel}>
+                        Message <span className={styles.required}>*</span>
                       </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        className={`form-textarea ${errors.message ? styles.inputError : ""}`}
-                        placeholder="Tell us about your event — date, expected guests, venue, any special requirements..."
-                        rows={6}
-                        aria-required="true"
-                        aria-describedby={
-                          errors.message ? "message-error" : undefined
-                        }
-                      />
+                      <div className={styles.inputWrapper}>
+                        <span className={styles.inputIcon}>💬</span>
+                        <textarea
+                          id="message"
+                          name="message"
+                          value={formData.message}
+                          onChange={handleChange}
+                          className={`${styles.formTextarea} ${errors.message ? styles.inputError : ""}`}
+                          placeholder="Tell us about your event — date, expected guests, venue, any special requirements..."
+                          rows={6}
+                          aria-required="true"
+                        />
+                        <span className={styles.inputGlow}></span>
+                      </div>
                       {errors.message && (
-                        <span
-                          id="message-error"
-                          className={styles.errorMsg}
-                          role="alert"
-                        >
+                        <span className={styles.errorMsg} role="alert">
                           {errors.message}
                         </span>
                       )}
@@ -334,29 +364,26 @@ export default function Contact() {
 
                     {status === "error" && (
                       <div className={styles.formError} role="alert">
+                        <span className={styles.errorIcon}>⚠️</span>
                         {errorMsg}
                       </div>
                     )}
 
                     <button
                       type="submit"
-                      className="btn btn-primary"
+                      className={styles.submitButton}
                       disabled={status === "loading"}
-                      style={{
-                        width: "100%",
-                        justifyContent: "center",
-                        padding: "1rem",
-                      }}
                     >
                       {status === "loading" ? (
                         <>
-                          <span className={styles.spinner} aria-hidden="true">
-                            ✦
-                          </span>
+                          <span className={styles.spinner}>✦</span>
                           Sending Enquiry...
                         </>
                       ) : (
-                        <>✦ Send Enquiry</>
+                        <>
+                          <span>✦ Send Enquiry</span>
+                          <span className={styles.buttonGlow}></span>
+                        </>
                       )}
                     </button>
 
@@ -373,7 +400,10 @@ export default function Contact() {
                 className={`${styles.infoSection} reveal-right`}
                 ref={infoRef}
               >
-                <h2 className={styles.infoTitle}>Get in Touch</h2>
+                <div className={styles.infoHeader}>
+                  <span className={styles.infoIcon}>🔮</span>
+                  <h2 className={styles.infoTitle}>Get in Touch</h2>
+                </div>
 
                 <div className={styles.contactInfoList}>
                   {contactInfo.map(({ icon, label, value, href }) => (
@@ -385,7 +415,6 @@ export default function Contact() {
                           <a
                             href={href}
                             className={styles.contactInfoValue}
-                            style={{ color: "var(--color-white-dim)" }}
                           >
                             {value}
                           </a>
@@ -402,13 +431,28 @@ export default function Contact() {
                   ))}
                 </div>
 
-                <div className="magic-separator">
+                <div className={styles.magicSeparator}>
                   <span>✦</span>
+                  <span>✧</span>
+                  <span>✦</span>
+                </div>
+
+                {/* City Badges */}
+                <div className={styles.citySection}>
+                  <h3 className={styles.citySectionTitle}>Service Areas</h3>
+                  <div className={styles.cityBadges}>
+                    {cities.map(city => (
+                      <Link key={city} to={`/services?city=${city.toLowerCase()}`} className={styles.cityBadge}>
+                        <span className={styles.cityIcon}>✦</span>
+                        {city}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Social */}
                 <div className={styles.socialSection}>
-                  <div className="form-label">Follow the Magic</div>
+                  <h3 className={styles.socialTitle}>Follow the Magic</h3>
                   <div className={styles.socialLinks}>
                     {INSTAGRAM && (
                       <a
@@ -418,7 +462,8 @@ export default function Contact() {
                         className={styles.socialLink}
                         aria-label="Instagram"
                       >
-                        Instagram
+                        <span className={styles.socialIcon}>Instagram</span>
+                        <span className={styles.socialGlow}></span>
                       </a>
                     )}
                     {FACEBOOK && (
@@ -429,21 +474,24 @@ export default function Contact() {
                         className={styles.socialLink}
                         aria-label="Facebook"
                       >
-                        Facebook
+                        <span className={styles.socialIcon}>Facebook-f</span>
+                        <span className={styles.socialGlow}></span>
                       </a>
                     )}
-                    {YOUTUBE && (
+                    {X_TWITTER && (
                       <a
-                        href={YOUTUBE}
+                        href={X_TWITTER}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={styles.socialLink}
-                        aria-label="YouTube"
+                        aria-label="X Twitter"
                       >
-                        YouTube
+                        <span className={styles.socialIcon}>X-twitter</span>
+                        <span className={styles.socialGlow}></span>
                       </a>
                     )}
                   </div>
+                  <p className={styles.socialTagline}>Get the magical essence.</p>
                 </div>
 
                 {/* Assurances */}
@@ -455,25 +503,41 @@ export default function Contact() {
                   ].map(({ icon, text }) => (
                     <div key={text} className={styles.assuranceItem}>
                       <span className={styles.assuranceIcon}>{icon}</span>
-                      <span>{text}</span>
+                      <span className={styles.assuranceText}>{text}</span>
+                      <span className={styles.assuranceGlow}></span>
                     </div>
                   ))}
                 </div>
+
+                {/* Decorative Image */}
+                <img src={group5} alt="" className={styles.infoDeco} />
               </div>
             </div>
           </div>
         </section>
 
-        {/* FAQ */}
-        <section className={`section ${styles.faq}`}>
-          <div className="container">
-            <div className="text-center reveal" ref={useScrollReveal()}>
-              <div className="section-label">Common Questions</div>
-              <h2 className="section-title" style={{ fontSize: "2rem" }}>
-                FAQ
-              </h2>
+        {/* FAQ Section */}
+        <section className={`section ${styles.faqSection}`}>
+          <div className={styles.faqBackground}>
+            <div className={styles.faqParticles}>
+              {[...Array(15)].map((_, i) => (
+                <div key={i} className={styles.faqParticle}>
+                  {['✦', '✧', '✨', '?'][Math.floor(Math.random() * 4)]}
+                </div>
+              ))}
             </div>
-            <div className={`grid-2 stagger`} ref={useScrollReveal()}>
+          </div>
+
+          <div className="container">
+            <div className={styles.faqHeader}>
+              <div className="section-label">Common Questions</div>
+              <h2 className={styles.faqTitle}>Frequently Asked Questions</h2>
+              <p className={styles.faqSubtitle}>
+                Everything you need to know about booking a magical experience
+              </p>
+            </div>
+
+            <div className={styles.faqGrid}>
               {[
                 {
                   q: "How far in advance should I book?",
@@ -491,18 +555,71 @@ export default function Contact() {
                   q: "Can the show be customized?",
                   a: "Every performance is tailored to your event. Parth works closely with clients to incorporate themes, branding, and personal touches.",
                 },
-              ].map(({ q, a }) => (
-                <div key={q} className={styles.faqItem}>
-                  <h3 className={styles.faqQ}>
-                    <span className={styles.faqIcon}>✦</span>
-                    {q}
-                  </h3>
+                {
+                  q: "What age groups are suitable?",
+                  a: "Magic is for everyone! Performances can be adapted for any age group, from children's parties to corporate executives.",
+                },
+                {
+                  q: "Do you offer virtual shows?",
+                  a: "Yes! Virtual mentalism and magic shows are available for online events, webinars, and remote gatherings worldwide.",
+                },
+              ].map(({ q, a }, index) => (
+                <div key={index} className={styles.faqItem}>
+                  <div className={styles.faqIconWrapper}>
+                    <span className={styles.faqItemIcon}>✦</span>
+                  </div>
+                  <h3 className={styles.faqQ}>{q}</h3>
                   <p className={styles.faqA}>{a}</p>
+                  <div className={styles.faqGlow}></div>
                 </div>
               ))}
             </div>
           </div>
         </section>
+
+        {/* CTA Section */}
+        <section className={styles.ctaSection}>
+          <div className={styles.ctaBackground}>
+            <div className={styles.ctaParticles}>
+              {[...Array(20)].map((_, i) => (
+                <div key={i} className={styles.ctaParticle}>
+                  {['✦', '✧', '⚡'][Math.floor(Math.random() * 3)]}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="container">
+            <div className={styles.ctaContent}>
+              <div className="reveal">
+                <h2 className={styles.ctaTitle}>Ready to Create Magic?</h2>
+                <p className={styles.ctaDescription}>
+                  Let's make your next event unforgettable with a performance
+                  that will leave your guests spellbound.
+                </p>
+                <div className={styles.ctaButtons}>
+                  <a href={`mailto:${EMAIL}`} className={styles.ctaButton}>
+                    <span>Email Us</span>
+                    <span className={styles.ctaSparkle}>✨</span>
+                  </a>
+                  <a href={`tel:${PHONE.replace(/[^+\d]/g, "")}`} className={styles.ctaButtonOutline}>
+                    <span>Call Now</span>
+                    <span className={styles.ctaArrow}>→</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer Note */}
+        <div className={styles.footerNote}>
+          <div className="container">
+            <div className={styles.copyright}>
+              © Copyright 2026 | Magician Parth | All rights reserved.
+            </div>
+          </div>
+        </div>
       </main>
     </>
   );
